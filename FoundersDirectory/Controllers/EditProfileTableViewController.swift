@@ -10,6 +10,12 @@ import UIKit
 
 class EditProfileTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
+    
+    struct Storyboard {
+        static let phoneIdentifier = "PhoneCellIdentifier"
+        static let emailIdentifier = "EmailCellIdentifier"
+        static let spouseIdentifier = "SpouseCellIdentifier"
+    }
     var founder: Founder?
     var founderId: Int?
     let imagePicker = UIImagePickerController()
@@ -30,6 +36,9 @@ class EditProfileTableViewController: UITableViewController, UIImagePickerContro
         super.viewDidLoad()
         founder = DirectoryData.sharedInstance.foundersData[founderId!]
         imagePicker.delegate = self
+        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: Storyboard.phoneIdentifier)
+        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: Storyboard.emailIdentifier)
+        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: Storyboard.spouseIdentifier)
         loadData()
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
         imageOutlet.isUserInteractionEnabled = true
@@ -42,9 +51,6 @@ class EditProfileTableViewController: UITableViewController, UIImagePickerContro
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func doneAction(_ sender: Any) {
-        
-    }
     @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
     {
         
@@ -89,7 +95,7 @@ class EditProfileTableViewController: UITableViewController, UIImagePickerContro
     {
         firstNameOutlet.text = founder?.firstName
         lastNameOutlet.text = founder?.lastName
-        // Company name
+        companyNameOutlet.text = founder?.companyName
         phoneNumberOutlet.text = founder?.phone
         emailOutlet.text = founder?.email
         spouseFullNameOutlet.text = founder?.spouse
@@ -129,6 +135,7 @@ class EditProfileTableViewController: UITableViewController, UIImagePickerContro
             newFounder?.firstName = firstNameOutlet.text
             newFounder?.lastName = lastNameOutlet.text
             newFounder?.fullName = (newFounder?.firstName)! + " " + (newFounder?.lastName)!
+            newFounder?.companyName = companyNameOutlet.text
             newFounder?.phone = phoneNumberOutlet.text
             newFounder?.email = emailOutlet.text
             newFounder?.spouse = spouseFullNameOutlet.text
@@ -138,15 +145,60 @@ class EditProfileTableViewController: UITableViewController, UIImagePickerContro
         }
     }
     
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if let cell = tableView.cellForRow(at: indexPath) {
+            switch indexPath.row {
+            case 1:
+                if (founder?.phoneListed)!{
+                    cell.accessoryType = .none
+                }
+                else {
+                    cell.accessoryType = .checkmark
+                }
+                founder?.phoneListed = !(founder?.phoneListed)!
+            case 2:
+                if (founder?.emailListed)!{
+                    cell.accessoryType = .none
+                }
+                else {
+                    cell.accessoryType = .checkmark
+                }
+                founder?.emailListed = !(founder?.emailListed)!
+            case 3:
+                if (founder?.spouseListed)!{
+                    cell.accessoryType = .none
+                }
+                else {
+                    cell.accessoryType = .checkmark
+                }
+                founder?.spouseListed = !(founder?.spouseListed)!
+            default:
+                return
+            }
+        }
+        
+        
     }
-    */
+
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
+        switch indexPath.row {
+        case 1:
+            cell.accessoryType = (founder?.phoneListed)! ? .checkmark : .none
+            return cell
+        case 2:
+            cell.accessoryType = (founder?.emailListed)! ? .checkmark : .none
+            return cell
+        case 3:
+            cell.accessoryType = (founder?.spouseListed)! ? .checkmark : .none
+            return cell
+        default:
+            return cell
+        }
+    }
+ 
 
     /*
     // Override to support conditional editing of the table view.

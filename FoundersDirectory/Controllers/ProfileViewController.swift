@@ -24,8 +24,11 @@ class ProfileViewController: UIViewController, MFMailComposeViewControllerDelega
     @IBOutlet weak var callButtonOutlet: UIButton!
     @IBOutlet weak var emailButtonOutlet: UIButton!    
     @IBOutlet weak var spouseStackView: UIStackView!
+    @IBOutlet weak var emailStackView: UIStackView!
+    @IBOutlet weak var callStackView: UIStackView!
     @IBOutlet weak var founderImage: UIImageView!
     @IBOutlet weak var name: UILabel!
+    @IBOutlet weak var companyName: UILabel!
     @IBOutlet weak var businessProfile: UILabel!
     @IBOutlet weak var bio: UITextView!
     @IBOutlet weak var year: UILabel!
@@ -76,15 +79,15 @@ class ProfileViewController: UIViewController, MFMailComposeViewControllerDelega
     private func loadFounderData() {
         founder = DirectoryData.sharedInstance.foundersData[founderId!]
         name.text = founder?.fullName
+        companyName.text = founder?.companyName
         founderImage.image = founder?.founderPicture
         bio.text = founder?.bio
         year.text = founder?.year
         status.text = founder?.status
-        if (founder?.spouse == nil)
-        {
-            spouseStackView.isHidden = true
-        }
-        // Do any additional setup after loading the view.
+        spouseStackView.isHidden = (founder?.spouse == nil || !(founder?.spouseListed)!) ? true : false
+        callStackView.isHidden = (!(founder?.phoneListed)!) ? true : false
+        emailStackView.isHidden = (!(founder?.emailListed)!) ? true : false
+
     }
     
     // MARK: - Segues

@@ -15,29 +15,37 @@ class Founder {
     var fullName: String?
     var preferredName: String?
     var phone: String?
+    var phoneListed: Bool
     var email: String?
+    var emailListed: Bool
     var bio: String?
     var status: String?
     var year: String?
     var address: String?
     var founderPicture: UIImage?
     var spouse: String?
+    var spouseListed: Bool
+    var companyName: String?
     
     init(firstName: String, lastName: String, fullName: String?, preferredName: String, phone:String,
          email: String?, bio: String?, status: String?, year: String?, address: String?,
-         image: UIImage, spouse: String?) {
+         image: UIImage, spouse: String?, companyName: String?) {
         self.firstName = firstName
         self.lastName = lastName
         self.fullName = fullName
         self.preferredName = preferredName
         self.phone = phone
+        self.phoneListed = true
         self.email = email
+        self.emailListed = true
         self.bio = bio
         self.status = status
         self.year = year
         self.address = address
         self.founderPicture = image
         self.spouse = spouse
+        self.spouseListed = true
+        self.companyName = companyName
     }
     
     public func getSpouseId() -> Int? {
