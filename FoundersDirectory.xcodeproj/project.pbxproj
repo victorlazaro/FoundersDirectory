@@ -18,7 +18,6 @@
 		CF12794A1F7424070084E469 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CF1279271F7420A90084E469 /* Info.plist */; };
 		CF12794B1F7424080084E469 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CF1279271F7420A90084E469 /* Info.plist */; };
 		CF6DB6AE1F7712BA001ECE1C /* DirectoryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6DB6AD1F7712BA001ECE1C /* DirectoryData.swift */; };
-		CF819A2E1F7439E6008CDF32 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF819A2D1F7439E6008CDF32 /* SignInViewController.swift */; };
 		CF819A3D1F747288008CDF32 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF819A3C1F747288008CDF32 /* Launch Screen.storyboard */; };
 		CF819A411F747ACA008CDF32 /* Founder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF819A401F747ACA008CDF32 /* Founder.swift */; };
 		CFB3975E1F74C9E000316892 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB3975D1F74C9E000316892 /* ProfileViewController.swift */; };
@@ -69,7 +68,6 @@
 		CF819A291F7430E8008CDF32 /* FoundersDirectory-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FoundersDirectory-Bridging-Header.h"; sourceTree = "<group>"; };
 		CF819A2A1F7430E8008CDF32 /* FoundersDirectoryTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FoundersDirectoryTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		CF819A2B1F7430E8008CDF32 /* FoundersDirectoryUITests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FoundersDirectoryUITests-Bridging-Header.h"; sourceTree = "<group>"; };
-		CF819A2D1F7439E6008CDF32 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		CF819A3C1F747288008CDF32 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		CF819A401F747ACA008CDF32 /* Founder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Founder.swift; sourceTree = "<group>"; };
 		CFB3975D1F74C9E000316892 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -179,7 +177,6 @@
 		CF819A2F1F743A22008CDF32 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				CF819A2D1F7439E6008CDF32 /* SignInViewController.swift */,
 				CF12791B1F7420A90084E469 /* AppDelegate.swift */,
 				CFB3975D1F74C9E000316892 /* ProfileViewController.swift */,
 				CFDF32741F7BE9A100B0C16F /* HomeTableViewController.swift */,
@@ -528,7 +525,6 @@
 				CFB3975E1F74C9E000316892 /* ProfileViewController.swift in Sources */,
 				CF12791C1F7420A90084E469 /* AppDelegate.swift in Sources */,
 				CFDF327D1F7C615B00B0C16F /* EditProfileTableViewController.swift in Sources */,
-				CF819A2E1F7439E6008CDF32 /* SignInViewController.swift in Sources */,
 				CF819A411F747ACA008CDF32 /* Founder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

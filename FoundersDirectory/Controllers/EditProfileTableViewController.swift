@@ -11,15 +11,18 @@ import UIKit
 class EditProfileTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     
-    struct Storyboard {
-        static let phoneIdentifier = "PhoneCellIdentifier"
-        static let emailIdentifier = "EmailCellIdentifier"
-        static let spouseIdentifier = "SpouseCellIdentifier"
-    }
     var founder: Founder?
     var founderId: Int?
     let imagePicker = UIImagePickerController()
-
+    
+    // String constants
+    let chooseImage = "Choose Image"
+    let camera = "Camera"
+    let gallery = "Gallery"
+    let cancel = "Cancel"
+    let warning = "Warning"
+    let noCameraMessage = "You do not have a camera"
+    let ok = "OK"
     
     // MARK: - Outlets
     @IBOutlet weak var firstNameOutlet: UITextField!
@@ -36,61 +39,17 @@ class EditProfileTableViewController: UITableViewController, UIImagePickerContro
         super.viewDidLoad()
         founder = DirectoryData.sharedInstance.foundersData[founderId!]
         imagePicker.delegate = self
-        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: Storyboard.phoneIdentifier)
-        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: Storyboard.emailIdentifier)
-        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: Storyboard.spouseIdentifier)
         loadData()
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
         imageOutlet.isUserInteractionEnabled = true
         imageOutlet.addGestureRecognizer(tapGestureRecognizer)
     }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        
-        // Dispose of any resources that can be recreated.
     }
     
-    @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
-    {
-        
-        let alert = UIAlertController(title: "Choose Image", message: nil, preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: { _ in
-            self.openCamera()
-        }))
-        
-        alert.addAction(UIAlertAction(title: "Gallery", style: .default, handler: { _ in
-            self.openGallery()
-        }))
-        
-        alert.addAction(UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil))
-        
-        self.present(alert, animated: true, completion: nil)
-    }
-    
-    private func openCamera()
-    {
-        if(UIImagePickerController .isSourceTypeAvailable(.camera))
-        {
-            imagePicker.sourceType = .camera
-            imagePicker.allowsEditing = true
-            self.present(imagePicker, animated: true, completion: nil)
-        }
-        else
-        {
-            let alert  = UIAlertController(title: "Warning", message: "You don't have camera", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
-        }
-    }
-    
-    private func openGallery()
-    {
-        imagePicker.sourceType = .photoLibrary
-        imagePicker.allowsEditing = true
-        self.present(imagePicker, animated: true, completion: nil)
-    }
-
     private func loadData()
     {
         firstNameOutlet.text = founder?.firstName
@@ -105,6 +64,46 @@ class EditProfileTableViewController: UITableViewController, UIImagePickerContro
         imageOutlet.clipsToBounds = true
         imageOutlet.image = founder?.founderPicture
     }
+    
+    @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
+    {
+        
+        let alert = UIAlertController(title: chooseImage, message: nil, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: camera, style: .default, handler: { _ in
+            self.openCamera()
+        }))
+        alert.addAction(UIAlertAction(title: gallery, style: .default, handler: { _ in
+            self.openGallery()
+        }))
+        
+        alert.addAction(UIAlertAction.init(title: cancel, style: .cancel, handler: nil))
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    private func openCamera()
+    {
+        if(UIImagePickerController .isSourceTypeAvailable(.camera))
+        {
+            imagePicker.sourceType = .camera
+            imagePicker.allowsEditing = true
+            self.present(imagePicker, animated: true, completion: nil)
+        }
+        else
+        {
+            let alert  = UIAlertController(title: warning, message: noCameraMessage, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: ok, style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    private func openGallery()
+    {
+        imagePicker.sourceType = .photoLibrary
+        imagePicker.allowsEditing = true
+        self.present(imagePicker, animated: true, completion: nil)
+    }
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -115,73 +114,27 @@ class EditProfileTableViewController: UITableViewController, UIImagePickerContro
         return 5
     }
     
-    // MARK: - UIImagePickerControllerDelegate Methods
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            imageOutlet.contentMode = .scaleAspectFit
-            imageOutlet.image = pickedImage
-        }
-        dismiss(animated: true, completion: nil)
-    }
-    
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        dismiss(animated: true, completion: nil)
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == ProfileViewController.Storyboard.doneSegueIdentifier {
-            let newFounder = DirectoryData.sharedInstance.foundersData[founderId!]
-            newFounder?.firstName = firstNameOutlet.text
-            newFounder?.lastName = lastNameOutlet.text
-            newFounder?.fullName = (newFounder?.firstName)! + " " + (newFounder?.lastName)!
-            newFounder?.companyName = companyNameOutlet.text
-            newFounder?.phone = phoneNumberOutlet.text
-            newFounder?.email = emailOutlet.text
-            newFounder?.spouse = spouseFullNameOutlet.text
-            newFounder?.bio = bioOutlet.text
-            newFounder?.founderPicture = imageOutlet.image
-            DirectoryData.sharedInstance.foundersData[founderId!] = founder
-        }
-    }
-    
+    // Updates the model as the cell is selected, toggling the checkmark
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if let cell = tableView.cellForRow(at: indexPath) {
             switch indexPath.row {
             case 1:
-                if (founder?.phoneListed)!{
-                    cell.accessoryType = .none
-                }
-                else {
-                    cell.accessoryType = .checkmark
-                }
+                cell.accessoryType = (founder?.phoneListed)! ? .none : .checkmark
                 founder?.phoneListed = !(founder?.phoneListed)!
             case 2:
-                if (founder?.emailListed)!{
-                    cell.accessoryType = .none
-                }
-                else {
-                    cell.accessoryType = .checkmark
-                }
+                cell.accessoryType = (founder?.emailListed)! ? .none : .checkmark
                 founder?.emailListed = !(founder?.emailListed)!
             case 3:
-                if (founder?.spouseListed)!{
-                    cell.accessoryType = .none
-                }
-                else {
-                    cell.accessoryType = .checkmark
-                }
+                cell.accessoryType = (founder?.spouseListed)! ? .none : .checkmark
                 founder?.spouseListed = !(founder?.spouseListed)!
             default:
                 return
             }
         }
-        
-        
     }
-
     
+    // Initializes the checkmark based upon the model
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = super.tableView(tableView, cellForRowAt: indexPath)
         switch indexPath.row {
@@ -198,51 +151,40 @@ class EditProfileTableViewController: UITableViewController, UIImagePickerContro
             return cell
         }
     }
- 
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    
+    // MARK: - UIImagePickerControllerDelegate Methods
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            imageOutlet.contentMode = .scaleAspectFit
+            imageOutlet.image = pickedImage
+        }
+        dismiss(animated: true, completion: nil)
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
     }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
+    
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    
+    // Updates the model based upon changes made
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == ProfileViewController.Storyboard.doneSegueIdentifier {
+            let newFounder = DirectoryData.sharedInstance.foundersData[founderId!]
+            newFounder?.firstName = firstNameOutlet.text
+            newFounder?.lastName = lastNameOutlet.text
+            newFounder?.fullName = (newFounder?.firstName)! + " " + (newFounder?.lastName)!
+            newFounder?.companyName = companyNameOutlet.text
+            newFounder?.phone = phoneNumberOutlet.text
+            newFounder?.email = emailOutlet.text
+            newFounder?.spouse = spouseFullNameOutlet.text
+            newFounder?.bio = bioOutlet.text
+            newFounder?.founderPicture = imageOutlet.image
+            DirectoryData.sharedInstance.foundersData[founderId!] = founder
+        }
     }
-    */
+    
+    
 
 }

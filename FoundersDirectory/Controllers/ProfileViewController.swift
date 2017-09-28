@@ -17,6 +17,7 @@ class ProfileViewController: UIViewController, MFMailComposeViewControllerDelega
         static let editProfileIdentifier = "EditProfileSegue"
         static let doneSegueIdentifier = "DoneSegueIdentifier"
     }
+    let mailNotAvailable = "Mail services are not available"
     var founderId: Int?
     var founder: Founder?
     
@@ -57,7 +58,7 @@ class ProfileViewController: UIViewController, MFMailComposeViewControllerDelega
 
     @IBAction func emailButtonAction(_ sender: Any) {
         if !MFMailComposeViewController.canSendMail() {
-            print("Mail services are not available")
+            print(mailNotAvailable)
             return
         }
         sendEmail()
@@ -69,8 +70,6 @@ class ProfileViewController: UIViewController, MFMailComposeViewControllerDelega
         // Configure the fields of the interface.
         if let email = founder?.email {
             composeVC.setToRecipients([email])
-            composeVC.setSubject("Hello!")
-            composeVC.setMessageBody("Hello this is my message body!", isHTML: false)
             // Present the view controller modally.
             self.present(composeVC, animated: true, completion: nil)
         }
@@ -90,8 +89,7 @@ class ProfileViewController: UIViewController, MFMailComposeViewControllerDelega
 
     }
     
-    // MARK: - Segues
-
+    // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == Storyboard.spouseSegueIdentifier {
             if let spouseId = founder?.getSpouseId() {
@@ -106,19 +104,10 @@ class ProfileViewController: UIViewController, MFMailComposeViewControllerDelega
         
     }
     
+    // Coming back from Edit View, we update the profile
     @IBAction func unwindToViewProfile(segue: UIStoryboardSegue)
     {
         loadFounderData()
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

@@ -6,7 +6,7 @@ target 'FoundersDirectory' do
   use_frameworks!
 
   # Pods for FoundersDirectory
-  pod 'Google/SignIn'
+#  pod 'Google/SignIn'
   target 'FoundersDirectoryTests' do
     inherit! :search_paths
     # Pods for testing
