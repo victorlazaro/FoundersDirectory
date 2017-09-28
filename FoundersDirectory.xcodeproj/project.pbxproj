@@ -17,12 +17,14 @@
 		CF12793C1F7420AA0084E469 /* FoundersDirectoryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF12793B1F7420AA0084E469 /* FoundersDirectoryUITests.swift */; };
 		CF12794A1F7424070084E469 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CF1279271F7420A90084E469 /* Info.plist */; };
 		CF12794B1F7424080084E469 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CF1279271F7420A90084E469 /* Info.plist */; };
+		CF6DB6AE1F7712BA001ECE1C /* DirectoryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6DB6AD1F7712BA001ECE1C /* DirectoryData.swift */; };
 		CF819A2E1F7439E6008CDF32 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF819A2D1F7439E6008CDF32 /* SignInViewController.swift */; };
-		CF819A391F746242008CDF32 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF819A381F746242008CDF32 /* HomeViewController.swift */; };
 		CF819A3D1F747288008CDF32 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF819A3C1F747288008CDF32 /* Launch Screen.storyboard */; };
-		CF819A3F1F747464008CDF32 /* FoundersViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF819A3E1F747464008CDF32 /* FoundersViewCell.swift */; };
 		CF819A411F747ACA008CDF32 /* Founder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF819A401F747ACA008CDF32 /* Founder.swift */; };
 		CFB3975E1F74C9E000316892 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB3975D1F74C9E000316892 /* ProfileViewController.swift */; };
+		CFDF32751F7BE9A100B0C16F /* HomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFDF32741F7BE9A100B0C16F /* HomeTableViewController.swift */; };
+		CFDF32771F7BEC0300B0C16F /* FoundersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFDF32761F7BEC0300B0C16F /* FoundersTableViewCell.swift */; };
+		CFDF327D1F7C615B00B0C16F /* EditProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFDF327C1F7C615B00B0C16F /* EditProfileTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,16 +64,18 @@
 		CF1279371F7420AA0084E469 /* FoundersDirectoryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FoundersDirectoryUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF12793B1F7420AA0084E469 /* FoundersDirectoryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundersDirectoryUITests.swift; sourceTree = "<group>"; };
 		CF12793D1F7420AA0084E469 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CF6DB6AD1F7712BA001ECE1C /* DirectoryData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectoryData.swift; sourceTree = "<group>"; };
 		CF819A281F742EAE008CDF32 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		CF819A291F7430E8008CDF32 /* FoundersDirectory-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FoundersDirectory-Bridging-Header.h"; sourceTree = "<group>"; };
 		CF819A2A1F7430E8008CDF32 /* FoundersDirectoryTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FoundersDirectoryTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		CF819A2B1F7430E8008CDF32 /* FoundersDirectoryUITests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FoundersDirectoryUITests-Bridging-Header.h"; sourceTree = "<group>"; };
 		CF819A2D1F7439E6008CDF32 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
-		CF819A381F746242008CDF32 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		CF819A3C1F747288008CDF32 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
-		CF819A3E1F747464008CDF32 /* FoundersViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundersViewCell.swift; sourceTree = "<group>"; };
 		CF819A401F747ACA008CDF32 /* Founder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Founder.swift; sourceTree = "<group>"; };
 		CFB3975D1F74C9E000316892 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		CFDF32741F7BE9A100B0C16F /* HomeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewController.swift; sourceTree = "<group>"; };
+		CFDF32761F7BEC0300B0C16F /* FoundersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundersTableViewCell.swift; sourceTree = "<group>"; };
+		CFDF327C1F7C615B00B0C16F /* EditProfileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileTableViewController.swift; sourceTree = "<group>"; };
 		E90D3FE0F2363EB5A6293147 /* Pods-FoundersDirectoryTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoundersDirectoryTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FoundersDirectoryTests/Pods-FoundersDirectoryTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -177,8 +181,9 @@
 			children = (
 				CF819A2D1F7439E6008CDF32 /* SignInViewController.swift */,
 				CF12791B1F7420A90084E469 /* AppDelegate.swift */,
-				CF819A381F746242008CDF32 /* HomeViewController.swift */,
 				CFB3975D1F74C9E000316892 /* ProfileViewController.swift */,
+				CFDF32741F7BE9A100B0C16F /* HomeTableViewController.swift */,
+				CFDF327C1F7C615B00B0C16F /* EditProfileTableViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -188,7 +193,7 @@
 			children = (
 				CF12791F1F7420A90084E469 /* Main.storyboard */,
 				CF819A3C1F747288008CDF32 /* Launch Screen.storyboard */,
-				CF819A3E1F747464008CDF32 /* FoundersViewCell.swift */,
+				CFDF32761F7BEC0300B0C16F /* FoundersTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -197,6 +202,7 @@
 			isa = PBXGroup;
 			children = (
 				CF819A401F747ACA008CDF32 /* Founder.swift */,
+				CF6DB6AD1F7712BA001ECE1C /* DirectoryData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -516,12 +522,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CFDF32771F7BEC0300B0C16F /* FoundersTableViewCell.swift in Sources */,
+				CFDF32751F7BE9A100B0C16F /* HomeTableViewController.swift in Sources */,
+				CF6DB6AE1F7712BA001ECE1C /* DirectoryData.swift in Sources */,
 				CFB3975E1F74C9E000316892 /* ProfileViewController.swift in Sources */,
 				CF12791C1F7420A90084E469 /* AppDelegate.swift in Sources */,
+				CFDF327D1F7C615B00B0C16F /* EditProfileTableViewController.swift in Sources */,
 				CF819A2E1F7439E6008CDF32 /* SignInViewController.swift in Sources */,
 				CF819A411F747ACA008CDF32 /* Founder.swift in Sources */,
-				CF819A3F1F747464008CDF32 /* FoundersViewCell.swift in Sources */,
-				CF819A391F746242008CDF32 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
