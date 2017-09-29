@@ -1,6 +1,0 @@
-framework module Pods_FoundersDirectoryUITests {
-  umbrella header "Pods-FoundersDirectoryUITests-umbrella.h"
-
-  export *
-  module * { export * }
-}

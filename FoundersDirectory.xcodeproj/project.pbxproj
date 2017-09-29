@@ -689,6 +689,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JDFGFW52BC;
 				INFOPLIST_FILE = FoundersDirectory/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = is543.FoundersDirectory;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -709,6 +710,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JDFGFW52BC;
 				INFOPLIST_FILE = FoundersDirectory/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = is543.FoundersDirectory;
 				PRODUCT_NAME = "$(TARGET_NAME)";

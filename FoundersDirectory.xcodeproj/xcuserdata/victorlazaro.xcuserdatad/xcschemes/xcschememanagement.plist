@@ -7,7 +7,25 @@
 		<key>FoundersDirectory.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>6</integer>
+			<integer>3</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>CF1279171F7420A90084E469</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CF12792B1F7420A90084E469</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CF1279361F7420AA0084E469</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

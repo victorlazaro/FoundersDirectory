@@ -9,7 +9,7 @@
 import UIKit
 import MessageUI
 
-class ProfileViewController: UIViewController, MFMailComposeViewControllerDelegate {
+class ProfileViewController: UIViewController, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate {
 
 
     struct Storyboard {
@@ -27,6 +27,7 @@ class ProfileViewController: UIViewController, MFMailComposeViewControllerDelega
     @IBOutlet weak var spouseStackView: UIStackView!
     @IBOutlet weak var emailStackView: UIStackView!
     @IBOutlet weak var callStackView: UIStackView!
+    @IBOutlet weak var textStackView: UIStackView!
     @IBOutlet weak var founderImage: UIImageView!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var companyName: UILabel!
@@ -51,8 +52,15 @@ class ProfileViewController: UIViewController, MFMailComposeViewControllerDelega
     //MARK :- Actions
 
     @IBAction func callButtonAction(_ sender: Any) {
-        if let number = URL(string: (founder?.phone?.replacingOccurrences(of: "-", with: ""))!) {
-            UIApplication.shared.open(number, options: [:], completionHandler: nil)
+//        if let number = URL(string: (founder?.phone?.replacingOccurrences(of: "-", with: ""))!) {
+//            UIApplication.shared.open(number, options: [:], completionHandler: nil)
+//        }
+        if let url = URL(string: "tel://\((founder?.phone?.replacingOccurrences(of: "-", with: ""))!)"), UIApplication.shared.canOpenURL(url) {
+            if #available(iOS 10, *) {
+                UIApplication.shared.open(url)
+            } else {
+                UIApplication.shared.openURL(url)
+            }
         }
     }
 
@@ -65,14 +73,38 @@ class ProfileViewController: UIViewController, MFMailComposeViewControllerDelega
     }
     
     func sendEmail() {
-        let composeVC = MFMailComposeViewController()
-        composeVC.mailComposeDelegate = self
-        // Configure the fields of the interface.
-        if let email = founder?.email {
-            composeVC.setToRecipients([email])
-            // Present the view controller modally.
-            self.present(composeVC, animated: true, completion: nil)
+        if MFMailComposeViewController.canSendMail() {
+             if let email = founder?.email {
+                let mail = MFMailComposeViewController()
+                mail.mailComposeDelegate = self
+                mail.setToRecipients([email])
+                present(mail, animated: true)
+            }
+        } else {
+            // show failure alert
         }
+    }
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true)
+    }
+    
+    @IBAction func textButtonAction(_ sender: Any) {
+        if (MFMessageComposeViewController.canSendText()) {
+            let controller = MFMessageComposeViewController()
+            controller.recipients = [(founder?.phone?.replacingOccurrences(of: "-", with: ""))!]
+            controller.messageComposeDelegate = self
+            self.present(controller, animated: true, completion: nil)
+        }
+    }
+    
+    func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
+        //... handle sms screen actions
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.isNavigationBarHidden = false
     }
     
     private func loadFounderData() {
@@ -85,7 +117,9 @@ class ProfileViewController: UIViewController, MFMailComposeViewControllerDelega
         status.text = founder?.status
         spouseStackView.isHidden = (founder?.spouse == nil || !(founder?.spouseListed)!) ? true : false
         callStackView.isHidden = (!(founder?.phoneListed)!) ? true : false
+        textStackView.isHidden = (!(founder?.phoneListed)!) ? true : false
         emailStackView.isHidden = (!(founder?.emailListed)!) ? true : false
+        
 
     }
     
